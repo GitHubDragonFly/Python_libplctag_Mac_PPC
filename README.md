@@ -1,14 +1,16 @@
 # PythonTest_PPC
-This is a special version of [PythonTest](https://github.com/GitHubDragonFly/PythonTest) designed for iMac G5 with PowerPC processor.
+This is a special version of the [PythonTest](https://github.com/GitHubDragonFly/PythonTest), designed for iMac G5 with PowerPC processor.
 
 Currently functional for reading atomic types and their arrays, bits, strings, timers, counters, controls from different PLCs and getting tags from ControlLogix PLC.
 
 Intended to be used solely as a testing tool (not fit for any production environment).
 
-It is using [libplctag](https://github.com/libplctag/libplctag) library v2.1.17, which was compiled from the source.
+It is using [libplctag](https://github.com/libplctag/libplctag) library v2.1.17, which was compiled from the source on the iMac itself.
 Using any other version of the library would require that you compile it from the source yourself.
 
 The included libplctag.py file was modified to include the 'Power Macintosh' check.
+
+The computer configuration this was tested on: iMac G5 with PowerPC G5 2.1GHz, 2GB DDR2 RAM, Mac OS X 10.4.11.
 
 # Functionality
 - Generally designed to display a single value per tag entered, either of string/integer/float...etc.
@@ -32,6 +34,8 @@ All it takes is to:
 - Install python v3.2.5 on your iMac G5 PowerPC device (this is available for download [here](https://www.python.org/downloads/mac-osx/)).
 - Download and extract the zip file of this project.
 - Use either IDLE to open plctag_gui.py file and run it by pressing F5, or use terminal - navigate to your folder - run the file with "python3.2 plctag_gui.py" or "python3.2 -m plctag_gui" command.
+
+
 
 # Licensing
 This is licensed under Mozila Public License 2.0+.
