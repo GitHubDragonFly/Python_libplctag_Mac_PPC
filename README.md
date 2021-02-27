@@ -10,7 +10,7 @@ Using any other version of the library would require that you compile it from th
 
 The included libplctag.py file was modified to include the 'Power Macintosh' check.
 
-The computer configuration this was tested on: iMac G5 with PowerPC G5 2.1GHz, 2GB DDR2 RAM, Mac OS X 10.4.11.
+The computer configuration this was tested on: iMac G5 with PowerPC G5 2.1GHz, 2.5GB DDR2 RAM, Mac OS X 10.4.11.
 
 # Functionality
 - Generally designed to display a single value per tag entered, either of string/integer/float...etc.
