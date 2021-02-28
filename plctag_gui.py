@@ -791,7 +791,7 @@ def comm_check():
                     if not (',' in myTag):
                         bitIndex = int(myTag[(myTag.index('[') + 1):myTag.index(']')])
                         if bitIndex > -1:
-                            realElementCount = math.ceil((bitIndex + elem_count) / (elem_size * 8))
+                            realElementCount = int(math.ceil(float(bitIndex + elem_count) / float(elem_size * 8)))
                         myTag = myTag[:myTag.index('[')] + '[0]' # Workaround
             elif dt == 'int64' or dt == 'uint64' or dt == 'float64':
                 elem_size = 8
