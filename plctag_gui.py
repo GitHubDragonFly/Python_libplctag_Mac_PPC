@@ -21,7 +21,6 @@ from libplctag import *
 try:
     # Python 2
     from Tkinter import *
-    import Tkinter.font as tkfont
 except ImportError:
     # Python 3
     from tkinter import *
@@ -57,11 +56,11 @@ class LabelResizing(Label):
     def __init__(self,parent,**kwargs):
         Label.__init__(self,parent,**kwargs)
         self.bind("<Configure>", self.on_resize)
-        self.width = self.winfo_width()
+        self.width = self.winfo_reqwidth()
 
     def on_resize(self,event):
         if self.width > 0:
-            self.width = int((event.width/self.width) * self.width)
+            self.width = int(event.width)
             self.config(width=self.width, wraplength=self.width)
 
 # width wise resizing of the tag entry box (window)
@@ -69,11 +68,11 @@ class EntryResizing(Entry):
     def __init__(self,parent,**kwargs):
         Entry.__init__(self,parent,**kwargs)
         self.bind("<Configure>", self.on_resize)
-        self.width = self.winfo_width()
+        self.width = self.winfo_reqwidth()
 
     def on_resize(self,event):
         if self.width > 0:
-            self.width = int((event.width/self.width) * self.width)
+            self.width = int(event.width)
             self.config(width=self.width)
 
 class connection_thread(threading.Thread):
@@ -154,7 +153,7 @@ def main():
 
     root = Tk()
     root.config(background= 'white')
-    root.title('Plctag GUI - Connection/Read Tester')
+    root.title('Plctag GUI - Connection/Read Tester (Python v' + pythonVersion + ')')
     root.geometry('800x600')
 
     connected, connectionInProgress, updateRunning = False, False, True
@@ -452,8 +451,10 @@ def main():
     btnStop.pack(side='right', padx=3)
 
     # create a text box for the Tag entry
-    fnt = tkfont.Font(family="Helvetica", size=18, weight="normal")
-    char_width = fnt.measure("0")
+    char_width = 5
+    if int(pythonVersion[0]) >= 3:
+        fnt = tkfont.Font(family="Helvetica", size=18, weight="normal")
+        char_width = fnt.measure("0")
     selectedTag = StringVar()
     tbTag = EntryResizing(frame3, justify='center', textvariable=selectedTag, font='Helvetica 18', width=(int(800 / char_width) - 22), relief='raised')
     selectedTag.set(myTag)
@@ -472,8 +473,9 @@ def main():
     frame4.pack(fill=X)
 
     # create a label to display the received tag value
-    fnt = tkfont.Font(family="Helvetica", size=24, weight="normal")
-    char_width = fnt.measure("0")
+    if int(pythonVersion[0]) >= 3:
+        fnt = tkfont.Font(family="Helvetica", size=24, weight="normal")
+        char_width = fnt.measure("0")
     tagValue = LabelResizing(frame4, text='~', fg='yellow', bg='navy', font='Helvetica 24', width=(int(800 / char_width - 4.5)), wraplength=800, relief='sunken')
     tagValue.pack(anchor='center', pady=5)
 
