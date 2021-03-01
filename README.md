@@ -31,12 +31,10 @@ See the libplctag website for all PLCs supported by the library.
 # Usage
 
 All it takes is to:
-
-- Install python v3.2.5 on your iMac G5 PowerPC device (this is available for download [here](https://www.python.org/downloads/mac-osx/)).
 - Download and extract the zip file of this project.
+- Use the built-in python v2.7.15 (follow the last step and run the file in the terminal with "python plctag_gui.py" command).
+- Optionally, if OS X 10.4.11, then install python v3.2.5 on your iMac G5 PowerPC device (this is available for download [here](https://www.python.org/downloads/mac-osx/)).
 - Use either IDLE to open plctag_gui.py file and run it by pressing F5, or use terminal - navigate to your folder - run the file with "python3.2 plctag_gui.py" or "python3.2 -m plctag_gui" command.
-
-This was also tested with built-in python v2.7.15 (follow the last step above and run the file with "python plctag_gui.py" command).
 
 # Licensing
 This is licensed under Mozila Public License 2.0+.
