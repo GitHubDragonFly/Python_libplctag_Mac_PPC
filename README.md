@@ -36,7 +36,7 @@ All it takes is to:
 - Download and extract the zip file of this project.
 - Use either IDLE to open plctag_gui.py file and run it by pressing F5, or use terminal - navigate to your folder - run the file with "python3.2 plctag_gui.py" or "python3.2 -m plctag_gui" command.
 
-This was also tested with built-in python v2.7.15 (just run the file with "python plctag_gui.py" command).
+This was also tested with built-in python v2.7.15 (follow the last step above and run the file with "python plctag_gui.py" command).
 
 # Licensing
 This is licensed under Mozila Public License 2.0+.
