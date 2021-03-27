@@ -107,7 +107,10 @@ if system == "Windows":
         library = "./windows_x86/plctag.dll"
 elif system == "Darwin":
     if platform.machine() == 'Power Macintosh':
-        library = "./macos_ppc/libplctag.2.1.dylib"
+        try:
+            library = "./macos_ppc/libplctag.2.3.dylib" #v2.3.6
+        except:
+            library = "./macos_ppc/libplctag.2.1.dylib" #v2.1.22
     else:
         library = "./macos_x64/libplctag.dylib"
 elif system == "Linux":
