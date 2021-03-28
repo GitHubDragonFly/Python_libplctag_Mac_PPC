@@ -28,7 +28,7 @@ The computer configuration this was tested on: iMac G5 with PowerPC G5 2.1GHz, 2
 There might be bugs in the app. Not everything could be tested by me, since I don't have access to all the different PLCs supported by the libplctag library.
 See the libplctag website for all PLCs supported by the library.
 
-The screenshot shows what the app looks like but it was taken with v2.1.17, while the app is currently set to use v2.3.6 (which doesn't support MicroLogix PID).
+The screenshot shows what the app looks like. It was taken with libplctag v2.1.17, while the app is currently set to use v2.3.6. MicroLogix PID will only be available with v2.1.22 and lower.
 
 # Usage
 
