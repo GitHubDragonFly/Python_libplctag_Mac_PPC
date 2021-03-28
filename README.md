@@ -1,7 +1,7 @@
 # PythonTest_PPC
 This is a special version of the [PythonTest](https://github.com/GitHubDragonFly/PythonTest), designed for iMac G5 with PowerPC processor.
 
-Currently functional for reading atomic types and their arrays, bits, strings, timers, counters, controls from different PLCs and getting tags from ControlLogix PLC.
+Currently functional for reading atomic types and their arrays/bits, strings, timers, counters, controls from different PLCs and getting tags from ControlLogix PLC.
 
 Intended to be used solely as a testing tool (not fit for any production environment).
 
