@@ -5,8 +5,7 @@ Currently functional for reading atomic types and their arrays, bits, strings, t
 
 Intended to be used solely as a testing tool (not fit for any production environment).
 
-It is using [libplctag](https://github.com/libplctag/libplctag) library v2.3.6 but it also has v2.1.22, both compiled from the source on the iMac itself which did require small modifications. You can choose whic library to use by editing libplctag.py file and just swapping numbers (just search for 'Power Macintosh' in the file).
-Using any other version of the library would require that you compile it from the source yourself.
+It is using [libplctag](https://github.com/libplctag/libplctag) library v2.3.6 but it also has v2.1.22, both compiled from the source on the iMac itself. You can choose which library to use by editing libplctag.py file and just swapping numbers (just search for 'Power Macintosh' in the file). Using any other version of the library would require that you compile it from the source yourself (which did require small modifications).
 
 The included libplctag.py file was modified to include the 'Power Macintosh' check.
 
