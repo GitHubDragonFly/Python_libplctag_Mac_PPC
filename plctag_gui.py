@@ -477,7 +477,7 @@ def main():
         fnt = tkfont.Font(family="Helvetica", size=24, weight="normal")
         char_width = fnt.measure("0")
     tagValue = LabelResizing(frame4, text='~', fg='yellow', bg='navy', font='Helvetica 24', width=(int(800 / char_width - 4.5)), wraplength=800, relief='sunken')
-    tagValue.pack(anchor='center', pady=5)
+    tagValue.pack(anchor='center', padx=1, pady=5)
 
     #-------------------------------------------------------------------------------------------
 
@@ -528,7 +528,9 @@ def get_bit(int, n):
 
 def getTags():
     cpu = selectedPLC.get()
+    ipAddress = selectedIPAddress.get()
     pth = (selectedPath.get()).replace(' ', '')
+
     if cpu == 'controllogix':
         controllerTags = []
         j = 1
@@ -538,39 +540,39 @@ def getTags():
         stringTag = 'protocol=ab_eip&gateway=' + ipAddress + '&path=' + pth + '&cpu=' + cpu + '&name=@tags'
 
         if int(pythonVersion[0]) >= 3:
-            tagID = plc_tag_create(stringTag.encode('utf-8'), timeout)
+            tagC = plc_tag_create(stringTag.encode('utf-8'), timeout)
         else:
-            tagID = plc_tag_create(stringTag, timeout)
+            tagC = plc_tag_create(stringTag, timeout)
 
-        while plc_tag_status(tagID) == 1:
+        while plc_tag_status(tagC) == 1:
             time.sleep(0.01)
 
-        if plc_tag_status(tagID) < 0:
-            plc_tag_destroy(tagID)
+        if plc_tag_status(tagC) < 0:
+            plc_tag_destroy(tagC)
             lbTags.insert(j, 'Failed to fetch Controller Tags')
             j += 1
         else:
-            tagSize = plc_tag_get_size(tagID)
+            tagSize = plc_tag_get_size(tagC)
             offset = 0
 
             while offset < tagSize:
                 # tagId, tagLength and IsStructure variables can be calculated if needed.
                 # They can also be diplayed by following the comments further below.
 
-                # tagId = plc_tag_get_uint32(tagID, offset)
+                # tagId = plc_tag_get_uint32(tagC, offset)
 
-                tagType = plc_tag_get_uint16(tagID, offset + 4)
+                tagType = plc_tag_get_uint16(tagC, offset + 4)
 
-                # tagLength = plc_tag_get_uint16(tagID, offset + 6)
+                # tagLength = plc_tag_get_uint16(tagC, offset + 6)
 
                 systemBit = get_bit(tagType, 12) # bit 12
 
                 if systemBit is False:
                     # IsStructure = get_bit(tagType, 15) # bit 15
 
-                    x = int(plc_tag_get_uint32(tagID, offset + 8))
-                    y = int(plc_tag_get_uint32(tagID, offset + 12))
-                    z = int(plc_tag_get_uint32(tagID, offset + 16))
+                    x = int(plc_tag_get_uint32(tagC, offset + 8))
+                    y = int(plc_tag_get_uint32(tagC, offset + 12))
+                    z = int(plc_tag_get_uint32(tagC, offset + 16))
 
                     dimensions = ''
 
@@ -586,14 +588,14 @@ def getTags():
 
                     offset += 20
 
-                    tagNameLength = plc_tag_get_uint16(tagID, offset)
+                    tagNameLength = plc_tag_get_uint16(tagC, offset)
                     tagNameBytes = bytearray(tagNameLength)
 
                     offset += 2
 
                     i = 0
                     while i < tagNameLength:
-                        tagNameBytes[i] = plc_tag_get_uint8(tagID, offset + i)
+                        tagNameBytes[i] = plc_tag_get_uint8(tagC, offset + i)
                         i += 1
 
                     tagName = tagNameBytes.decode('utf-8')
@@ -610,14 +612,14 @@ def getTags():
                     offset += tagNameLength
                 else:
                     offset += 20
-                    tagNameLength = plc_tag_get_uint16(tagID, offset)
+                    tagNameLength = plc_tag_get_uint16(tagC, offset)
                     offset += (2 + tagNameLength)
 
             for t in controllerTags:
                 lbTags.insert(j, t)
                 j += 1
 
-            plc_tag_destroy(tagID)
+            plc_tag_destroy(tagC)
 
         programName = selectedProgramName.get()
 
@@ -627,38 +629,38 @@ def getTags():
             stringTag = 'protocol=ab_eip&gateway=' + ipAddress + '&path=' + path + '&cpu=' + cpu + '&name=Program:' + programName + '.@tags'
 
             if int(pythonVersion[0]) >= 3:
-                tagID = plc_tag_create(stringTag.encode('utf-8'), timeout)
+                tagP = plc_tag_create(stringTag.encode('utf-8'), timeout)
             else:
-                tagID = plc_tag_create(stringTag, timeout)
+                tagP = plc_tag_create(stringTag, timeout)
 
-            while plc_tag_status(tagID) == 1:
+            while plc_tag_status(tagP) == 1:
                 time.sleep(0.01)
 
-            if plc_tag_status(tagID) < 0:
-                plc_tag_destroy(tagID)
+            if plc_tag_status(tagP) < 0:
+                plc_tag_destroy(tagP)
                 lbTags.insert(j, 'Failed to fetch ' + programName + ' Tags')
             else:
-                tagSize = plc_tag_get_size(tagID)
+                tagSize = plc_tag_get_size(tagP)
                 offset = 0
 
                 while offset < tagSize:
                     # tagId, tagLength and IsStructure variables can be calculated if needed.
                     # They can also be diplayed by following the comments further below.
 
-                    # tagId = plc_tag_get_uint32(tagID, offset)
+                    # tagId = plc_tag_get_uint32(tagP, offset)
 
-                    tagType = plc_tag_get_uint16(tagID, offset + 4)
+                    tagType = plc_tag_get_uint16(tagP, offset + 4)
 
-                    # tagLength = plc_tag_get_uint16(tagID, offset + 6)
+                    # tagLength = plc_tag_get_uint16(tagP, offset + 6)
 
                     systemBit = get_bit(tagType, 12) # bit 12
 
                     if systemBit is False:
                         # IsStructure = get_bit(tagType, 15) # bit 15
 
-                        x = int(plc_tag_get_uint32(tagID, offset + 8))
-                        y = int(plc_tag_get_uint32(tagID, offset + 12))
-                        z = int(plc_tag_get_uint32(tagID, offset + 16))
+                        x = int(plc_tag_get_uint32(tagP, offset + 8))
+                        y = int(plc_tag_get_uint32(tagP, offset + 12))
+                        z = int(plc_tag_get_uint32(tagP, offset + 16))
 
                         dimensions = ''
 
@@ -674,14 +676,14 @@ def getTags():
 
                         offset += 20
 
-                        tagNameLength = plc_tag_get_uint16(tagID, offset)
+                        tagNameLength = plc_tag_get_uint16(tagP, offset)
                         tagNameBytes = bytearray(tagNameLength)
 
                         offset += 2
 
                         i = 0
                         while i < tagNameLength:
-                            tagNameBytes[i] = plc_tag_get_uint8(tagID, offset + i)
+                            tagNameBytes[i] = plc_tag_get_uint8(tagP, offset + i)
                             i += 1
 
                         tagName = tagNameBytes.decode('utf-8')
@@ -695,14 +697,14 @@ def getTags():
                         offset += tagNameLength
                     else:
                         offset += 20
-                        tagNameLength = plc_tag_get_uint16(tagID, offset)
+                        tagNameLength = plc_tag_get_uint16(tagP, offset)
                         offset += (2 + tagNameLength)
 
                 for t in programTags:
                     lbTags.insert(j, t)
                     j += 1
 
-                plc_tag_destroy(tagID)
+                plc_tag_destroy(tagP)
         else:
             lbTags.insert(j, 'No Program Tags Retrieved (missing program name)')
     else:
@@ -1257,7 +1259,8 @@ def stop_update_value():
             btnStart['bg'] = 'blue'
         btnStop['state'] = 'disabled'
         btnStop['bg'] = 'lightgrey'
-        btnGetTags['state'] = 'normal'
+        if selectedPLC.get() == 'controllogix':
+            btnGetTags['state'] = 'normal'
         lbPLC['state'] = 'normal'
         lbDataType['state'] = 'normal'
         tbIPAddress['state'] = 'normal'
@@ -1324,7 +1327,7 @@ def plc_select():
         lbDataType.delete(1, 'end')
 
         if plc == 'controllogix' or plc == 'logixpccc' or plc == 'njnx':
-            selectedIPAddress.set('192.168.1.12')
+            selectedIPAddress.set('192.168.1.15')
             selectedPath.set('1,3')
             tbPath['state'] = 'normal'
 
@@ -1366,7 +1369,13 @@ def plc_select():
                 lbDataType.insert(i, dataType)
                 i = i + 1
 
+        selectedTag.set('')
         selectedDataType.set('int8')
+        selectedTCC.set('None')
+        selectedBit.set('None')
+
+        if plc == 'micrologix':
+            selectedPID.set('None')
 
         lbBit.delete(1, 'end')
 
@@ -1374,6 +1383,14 @@ def plc_select():
         for bit in bits_8bit:
             lbBit.insert(i, bit)
             i = i + 1
+
+        data_type_select()
+
+        if btnStart['state'] == 'normal':
+            btnStart['state'] = 'disabled'
+            btnStart['bg'] = 'lightgrey'
+
+        start_connection()
 
 def data_type_select():
     if lbDataType.get(ANCHOR)[0] != '~':
