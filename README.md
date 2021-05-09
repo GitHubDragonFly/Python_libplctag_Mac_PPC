@@ -37,6 +37,8 @@ All it takes is to:
 - Optionally, if OS X 10.4.11, then install python v3.2.5 on your iMac G5 PowerPC device (available for download [here](https://www.python.org/downloads/mac-osx/)).
 - Use either IDLE to open plctag_gui.py file and run it by pressing F5, or use terminal - navigate to your folder - run the file with one of the following commands: "python plctag_gui.py" or "python -m plctag_gui" or "python3.2 plctag_gui.py" or "python3.2 -m plctag_gui".
 
+Note: depending on the python version the graphics might look slightly different and some widgets might need to be adjusted size-wise.
+
 # Licensing
 This is licensed under Mozila Public License 2.0+.
 
