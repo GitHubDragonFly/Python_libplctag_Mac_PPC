@@ -11,6 +11,10 @@ The included libplctag.py file was modified to include the 'Power Macintosh' che
 
 The computer configuration this was tested on: iMac G5 with PowerPC G5 2.1GHz, 2.5GB DDR2 RAM, Mac OS X 10.4.11.
 
+# Screenshot
+
+![Start Page](screenshots/plctag_gui_ppc.png?raw=true)
+
 # Functionality
 - Generally designed to display a single value per tag entered, either of string/integer/float...etc.
 - Multiple consecutive elements/bits can be displayed for certain data types by adding "{x}" at the end of the tag, where "x" is the number of elements/bits (ex. CT_STRINGArray[0]{5} or CT_DINT/2{15} or N7:0{3}).
