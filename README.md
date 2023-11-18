@@ -11,6 +11,8 @@ The included libplctag.py file was modified to include the 'Power Macintosh' che
 
 The computer configuration this was tested on: iMac G5 with PowerPC G5 2.1GHz, 2.5GB DDR2 RAM, Mac OS X 10.4.11.
 
+Try experimenting with 64-bit Mac computers by using different versions of the library that you can fetch from the [libplctag](https://github.com/libplctag/libplctag) website.
+
 # Screenshot
 
 ![Start Page](screenshots/plctag_gui_ppc.png?raw=true)
@@ -31,7 +33,7 @@ The computer configuration this was tested on: iMac G5 with PowerPC G5 2.1GHz, 2
 There might be bugs in the app. Not everything could be tested by me, since I don't have access to all the different PLCs supported by the libplctag library.
 See the libplctag website for all PLCs supported by the library.
 
-The screenshot shows what the app looks like. It reflects libplctag v2.1.17 while the app is currently set to use v2.3.6. MicroLogix PID will only be available with v2.1.22 and lower.
+The screenshot shows what the app looks like. It reflects libplctag v2.1.17 while the app is currently set to use v2.3.6. Unless something changes in the future versions of the libplctag, the MicroLogix PID will only be available with v2.1.22 and lower.
 
 # Usage
 
@@ -39,9 +41,13 @@ All it takes is to:
 - Download and extract the zip file of this project.
 - If using the built-in python v2.7.15 then follow the last step to run the file.
 - Optionally, if OS X 10.4.11, then install python v3.2.5 on your iMac G5 PowerPC device (available for download [here](https://www.python.org/downloads/mac-osx/)).
-- Use either IDLE to open plctag_gui.py file and run it by pressing F5, or use terminal - navigate to your folder - run the file with one of the following commands: "python plctag_gui.py" or "python -m plctag_gui" or "python3.2 plctag_gui.py" or "python3.2 -m plctag_gui".
+- Use either IDLE to open plctag_gui.py file and run it by pressing F5, or use terminal - navigate to your folder - run the file with one of the following commands:
+  - `python plctag_gui.py`
+  - `python -m plctag_gui`
+  - `python3.2 plctag_gui.py`
+  - `python3.2 -m plctag_gui`
 
-Note: depending on the python version the graphics might look slightly different and some widgets might need to be adjusted size-wise.
+Note: depending on the python version the graphics might look slightly different and some widgets might need to be resized.
 
 # Licensing
 This is licensed under Mozila Public License 2.0+.
