@@ -1,5 +1,5 @@
-# PythonTest_Mac_PPC
-This is a special version of the [Python_libplctag_GUI](https://github.com/GitHubDragonFly/Python_libplctag_GUI), designed for iMac G5 with PowerPC processor. This is not necessarily limited to this model or type of the CPU only.
+# Python_libplctag_Mac_PPC
+This is a special version of the [Python_libplctag_GUI](https://github.com/GitHubDragonFly/Python_libplctag_GUI), designed for iMac G5 with PowerPC processor. This is not necessarily limited to this model or type of the CPU only, just use logical approach.
 
 Currently functional for reading atomic types and their arrays/bits, strings, timers, counters, controls from different PLCs and getting tags from ControlLogix PLC.
 
